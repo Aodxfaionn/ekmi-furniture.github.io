@@ -16,6 +16,8 @@ $dark: #343434;
 $orange: #ff9619;
 $grey: #5b5b5b;
 $white: #fff;
+$brown: #ccb2a3;
+$green: #a9c2be;
 
 @font-face {
   font-family: "Raleway";
@@ -100,9 +102,9 @@ a:hover::before {
   transform: scaleX(1);
 }
 
-a:active,
-a:hover,
-a:focus {
+:active,
+:hover,
+:focus {
   outline: 0;
   outline-offset: 0;
   -webkit-box-shadow: none;
@@ -143,6 +145,7 @@ a:focus {
 }
 
 .footer {
+  position: relative;
   background: $grey;
   color: $white;
   font-weight: 500;
@@ -171,18 +174,23 @@ a:focus {
   }
   &__copyright {
     width: 100%;
-    margin-top: 50px;
+    margin-top: 30px;
     text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 1.92px;
+    text-transform: capitalize;
   }
 }
 
 .navFooter {
-  @include flex-col(30px);
+  @include flex-col(15px);
   align-items: start;
 }
 
 .contacts {
-  @include flex-col(30px);
+  @include flex-col(15px);
   flex-direction: column;
   align-items: start;
   &__social {
@@ -271,6 +279,7 @@ a:focus {
 }
 
 .title {
+  width: 100%;
   margin-bottom: 30px;
   font-size: 35px;
   font-weight: 700;
@@ -279,6 +288,7 @@ a:focus {
     color: $orange;
   }
   &-three {
+    margin-bottom: 30px;
     font-size: 20px;
     font-weight: 500;
     line-height: 135%;
@@ -295,7 +305,7 @@ a:focus {
     top: 0;
     width: 100%;
     height: 71.5%;
-    background-color: #ccb2a3;
+    background-color: $brown;
   }
   & .container {
     padding-top: 30px;
@@ -377,7 +387,6 @@ a:focus {
     line-height: 135%;
     letter-spacing: 1.8px;
     &-bold {
-      margin-bottom: 30px;
       color: $white;
     }
   }
@@ -396,6 +405,7 @@ a:focus {
 .time {
   @include flex(30px);
   justify-content: space-between;
+  margin-top: 30px;
   font-size: 25px;
   &-big {
     color: rgba(52, 52, 52, 0.1);
@@ -412,17 +422,27 @@ a:focus {
     margin-bottom: 15px;
     letter-spacing: 1.8px;
   }
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    width: 70%;
+    height: 24%;
+    background-color: $grey;
+  }
 }
 
 .info {
   @include flex(50px);
-  margin-bottom: 200px;
+  margin-bottom: 150px;
   &__img {
     width: 50%;
   }
   &__text {
     width: 45%;
-    padding-left: 100px;
+    padding-left: 7%;
     color: $white;
     &-title {
       margin-bottom: 30px;
@@ -437,7 +457,28 @@ a:focus {
 }
 
 .why {
+  @include flex(50px);
+  margin-bottom: 100px;
+  &__img {
+    width: 50%;
+  }
+  &__text {
+    width: 45%;
+    padding-right: 7%;
+  }
+}
 
+.individ {
+  @include flex(50px);
+  z-index: 1;
+  color: $white;
+  &__img {
+    width: 50%;
+  }
+  &__text {
+    width: 45%;
+    padding-right: 7%;
+  }
 }
 
 .square-grey {
@@ -445,7 +486,7 @@ a:focus {
   top: 110px;
   z-index: 0;
   width: 70%;
-  height: 40%;
+  height: 26%;
   background-color: $grey;
 }
 
@@ -454,16 +495,360 @@ a:focus {
   top: 50px;
   z-index: -1;
   width: 50%;
-  height: 100%;
-  border: 5px solid #ccb2a3;
+  height: 95%;
+  border: 5px solid $brown;
 }
 
 .square-green {
-  right: 0;
-  top: 0;
+  left: 0;
+  top: 44.7%;
+  z-index: -1;
+  width: 40%;
+  height: 5%;
+  background-color: $green;
+}
+
+.grid {
+  position: absolute;
   z-index: -1;
   width: 30%;
-  background-color: #a9c2be;
+  bottom: 0;
+  background: $green;
+}
+
+.product {
+  margin: 100px auto;
+}
+
+.productList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  &__one {
+    position: relative;
+    @include flex;
+    justify-content: center;
+    border: 5px solid #f2f3f5;
+    height: 200px;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 100%;
+    & img {
+      width: 100%;
+      position: absolute;
+    }
+  }
+  &__text {
+    width: 100%;
+    height: 100%;
+    padding: 15px 30px;
+    background-color: $white;
+    transform: translateX(-150%);
+    transition: 0.5s;
+    & p {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.productList__one:hover .productList__text {
+  transform: translateX(0);
+  transition: 0.5s;
+}
+
+.partners .container {
+  @include flex(50px);
+  margin: 100px auto;
+  z-index: 2;
+}
+
+.partners {
+  position: relative;
+  & .title {
+    margin-bottom: 0;
+  }
+  &__img {
+    width: 50%;
+  }
+  &__text {
+    width: 45%;
+    padding-right: 7%;
+    color: $white;
+    & p {
+      margin-bottom: 10px;
+    }
+  }
+  &__orange-one {
+    top: 8%;
+    left: 45%;
+    height: 80px;
+    z-index: -1;
+  }
+  &__orange-two {
+    bottom: -13%;
+    right: 15%;
+    width: 200px;
+    height: 80px;
+    z-index: -1;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 10%;
+    left: 0;
+    width: 70%;
+    height: 66%;
+    background-color: $grey;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 10%;
+    right: 0;
+    width: 51%;
+    height: 60%;
+    background-color: $brown;
+  }
+}
+
+.partners__list {
+  @include flex(50px);
+  justify-content: space-between;
+  padding-top: 50px;
+  & img {
+    height: 90px;
+  }
+}
+
+.forma {
+  position: relative;
+  width: 100%;
+  background-color: $green;
+  .container {
+    @include flex(30px);
+    justify-content: space-between;
+    margin: 0 auto 100px;
+  }
+  &__img {
+    width: 50%;
+  }
+}
+
+.forma__form {
+  position: absolute;
+  right: 7%;
+  width: 47%;
+}
+
+.form {
+  @include flex-col(10px);
+  background-color: $white;
+  margin: 30px 0;
+  padding: 30px 50px;
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+  & > div {
+    position: relative;
+    height: 50px;
+  }
+  &__error {
+    position: absolute;
+    padding-left: 5px;
+    color: red;
+    font-size: 14px;
+  }
+}
+
+.input {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid $grey;
+  font-size: 14px;
+  &:focus {
+    border: 0;
+    border-bottom: 1px solid $grey;
+  }
+  &::placeholder {
+    color: $dark;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+  }
+  &::-webkit-input-placeholder {
+    color: $dark;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+  }
+  &::-moz-placeholder {
+    color: $dark;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+  }
+  &::-ms-input-placeholder {
+    color: $dark;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus {
+  -webkit-text-fill-color: $dark;
+  -webkit-box-shadow: 0 0 0px 40rem #fff inset;
+}
+
+.textarea {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid $grey;
+  font-size: 14px;
+  resize: vertical;
+  &::placeholder {
+    color: $dark;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+  }
+  &::-webkit-input-placeholder {
+    color: $dark;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+  }
+  &::-moz-placeholder {
+    color: $dark;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+  }
+  &::-ms-input-placeholder {
+    color: $dark;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+div.checkbox {
+  position: relative;
+  height: auto;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.checkbox input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  width: 15px;
+  height: 15px;
+}
+
+.checkbox input + label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.checkbox input + label::before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid $orange;
+  border-radius: 5px;
+  margin-right: 0.5em;
+}
+
+.checkbox input:checked + label::before {
+  border: 1px solid $orange;
+  background: $orange;
+  border-radius: 2px;
+}
+
+.ekmi {
+  text-align: right;
+  color: $grey;
+  font-size: 130px;
+  font-weight: 800;
+  line-height: 70%;
+  letter-spacing: 16.9px;
+  text-transform: lowercase;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.5s, opacity 0.5s;
+  pointer-events: none;
+  &__content {
+    background-color: #fff;
+    padding: 30px 50px;
+    min-width: 350px;
+    height: min-content;
+    text-align: center;
+    position: relative;
+    &-title {
+      color: #0e0e0e;
+    }
+  }
+}
+
+.modal.open {
+  pointer-events: auto;
+  opacity: 1;
+  transform: scale(1);
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.close {
+  color: rgb(8, 0, 0);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 25px;
 }
 
 // Адаптивность

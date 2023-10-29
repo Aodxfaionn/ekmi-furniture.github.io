@@ -9,7 +9,6 @@
 //   burger.classList.toggle("active");
 // });
 
-
 // При скролле наверх появляется хедер
 // const headerMini = document.querySelector(".headerMini");
 // let prevScrollpos = window.pageYOffset;
@@ -114,33 +113,17 @@ window.addEventListener("DOMContentLoaded", function () {
 function checkFullField(forma) {
   const inputRequired = forma.querySelectorAll("[required]");
   for (input of inputRequired) {
-    if (input.value == "") input.nextElementSibling.innerHTML = "Поле, обязательное для заполнения";
+    if (input.value == "")
+      input.nextElementSibling.innerHTML = "Поле, обязательное для заполнения";
   }
 }
 
-// window.addEventListener("click", (e) => {
-//   if(e.target.closest('.js-btn-modal')) startModal(modalEntry);
-// });
+const modal = document.querySelector(".modal"),
+  btnModal = document.querySelector("#modal");
 
+btnModal.addEventListener("click", (e) => modal.classList.add("open"));
 
-function startForm(formClass, btnClass) {
-  const forma = document.querySelector(formClass);
-  const btn = forma.querySelector(btnClass);
-  forma.addEventListener("change", () => checkFormField(forma));
-  btn.addEventListener("change", () => checkFullField(forma));
-};
-
-function startModal(curModal, prevModal) {
-  cleanForm(curModal);
-  if (prevModal) prevModal.classList.remove("open");
-  curModal.classList.add("open");
-  closeModal(curModal);
-}
-
-
-function closeModal(modal) {
-  modal.addEventListener("mousedown", function (e) {
-    if (e.target == modal || e.target.closest(".closeBtn")) modal.classList.remove("open");
-  });
-}
-
+modal.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (e.target == modal) modal.classList.remove("open");
+});
