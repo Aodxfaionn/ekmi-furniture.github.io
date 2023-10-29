@@ -28,6 +28,12 @@
   font-weight: 700;
   font-style: normal;
 }
+@font-face {
+  font-family: "Raleway";
+  src: url("./fonts/Raleway-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;
@@ -83,8 +89,10 @@ a:focus {
 }
 
 .container {
-  max-width: 1440px;
+  position: relative;
+  max-width: 1300px;
   width: 100%;
+  margin: 0 auto;
 }
 
 .header .container {
@@ -131,6 +139,7 @@ a:focus {
   flex-wrap: wrap;
   gap: 30px;
   justify-content: space-between;
+  align-items: start;
   margin: 0 auto;
   padding: 50px 0;
 }
@@ -244,9 +253,221 @@ a:focus {
   transform: scaleX(0.55);
 }
 
+.orange {
+  position: absolute;
+  width: 100px;
+  background-color: #ff9619;
+}
+
+.square {
+  position: absolute;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 150%;
+}
+.title::first-letter {
+  color: #ff9619;
+}
+.title-three {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 135%;
+  letter-spacing: 1px;
+}
+
+.main {
+  position: relative;
+}
+.main::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  width: 100%;
+  height: 71.5%;
+  background-color: #ccb2a3;
+}
+.main .container {
+  padding-top: 30px;
+}
+.main__title {
+  width: 30%;
+  color: #fff;
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 110%;
+  text-transform: capitalize;
+}
+.main__title::first-letter {
+  color: #ff9619;
+}
+.main__found {
+  margin-bottom: 30px;
+  text-align: right;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 127.5%;
+}
+
+.slider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.slider__slide {
+  max-width: 60%;
+}
+.slider__slide img {
+  width: 100%;
+}
+
+.slider__toggle {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.slider__toggle-circle {
+  width: 8px;
+  height: 8px;
+  background-color: #bfbebe;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+.slider__toggle-circle:hover {
+  transform: scale(1.3);
+}
+.slider__toggle-circle .active {
+  width: 12px;
+  height: 12px;
+  background-color: #ff9619;
+}
+.slider__toggle-circle .active:hover {
+  transform: none;
+}
+
+.history {
+  max-width: 1300px;
+  margin: 100px auto;
+}
+.history .container:not(.time) {
+  display: flex;
+  justify-content: end;
+}
+.history__text {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 45px;
+  width: 47.7%;
+  padding: 30px 50px;
+  background-color: #5b5b5b;
+  color: #fff;
+  line-height: 135%;
+  letter-spacing: 1.8px;
+}
+.history__text-bold {
+  margin-bottom: 30px;
+  color: #fff;
+}
+.history__img {
+  width: 60%;
+  max-height: 500px;
+}
+.history__orange {
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  height: 50px;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  font-size: 25px;
+}
+.time-big {
+  color: rgba(52, 52, 52, 0.1);
+  font-size: 144px;
+  font-weight: 600;
+  line-height: 100%;
+}
+
+.brand {
+  position: relative;
+  margin: 100px auto;
+}
+.brand p {
+  margin-bottom: 15px;
+  letter-spacing: 1.8px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin-bottom: 200px;
+}
+.info__img {
+  width: 50%;
+}
+.info__text {
+  width: 45%;
+  padding-left: 100px;
+  color: #fff;
+}
+.info__text-title {
+  margin-bottom: 30px;
+  text-align: right;
+  color: #5b5b5b;
+  font-size: 129px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%;
+}
+
+.square-grey {
+  right: 0;
+  top: 110px;
+  z-index: 0;
+  width: 70%;
+  height: 40%;
+  background-color: #5b5b5b;
+}
+
+.square-brown {
+  left: 50px;
+  top: 50px;
+  z-index: -1;
+  width: 50%;
+  height: 100%;
+  border: 5px solid #ccb2a3;
+}
+
+.square-green {
+  right: 0;
+  top: 0;
+  z-index: -1;
+  width: 30%;
+  background-color: #a9c2be;
+}
+
 @media (max-width: 700px) {
   .mobileMenu {
-    position: relative;
+    display: none;
+    position: absolute;
     left: 40px;
     cursor: pointer;
     display: flex;
@@ -256,7 +477,7 @@ a:focus {
   .mobileMenu__burger {
     width: 40px;
     height: 4px;
-    background-color: #ffffff;
+    background-color: #fff;
     transition: 0.5s;
     border-radius: 5px;
   }

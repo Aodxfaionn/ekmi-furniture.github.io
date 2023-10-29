@@ -15,6 +15,7 @@
 $dark: #343434;
 $orange: #ff9619;
 $grey: #5b5b5b;
+$white: #fff;
 
 @font-face {
   font-family: "Raleway";
@@ -46,6 +47,12 @@ $grey: #5b5b5b;
   font-weight: 700;
   font-style: normal;
 }
+@font-face {
+  font-family: "Raleway";
+  src: url("./fonts/Raleway-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
 
 * {
   margin: 0;
@@ -55,7 +62,7 @@ $grey: #5b5b5b;
 
 body {
   width: 100vw;
-  background-color: #fff;
+  background-color: $white;
   color: $dark;
   font-family: "Raleway", sans-serif;
   font-size: 18px;
@@ -103,8 +110,10 @@ a:focus {
 }
 
 .container {
-  max-width: 1440px;
+  position: relative;
+  max-width: 1300px;
   width: 100%;
+  margin: 0 auto;
 }
 
 .header {
@@ -135,7 +144,7 @@ a:focus {
 
 .footer {
   background: $grey;
-  color: #fff;
+  color: $white;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: 2.08px;
@@ -143,13 +152,14 @@ a:focus {
   & .container {
     @include flex(30px);
     justify-content: space-between;
+    align-items: start;
     margin: 0 auto;
     padding: 50px 0;
   }
   & a {
-    color: #fff;
+    color: $white;
     &::before {
-      background-color: #fff;
+      background-color: $white;
     }
   }
   &__logo {
@@ -204,7 +214,7 @@ a:focus {
   padding: 10px 15px;
   border: 0;
   background: $orange;
-  color: #fff;
+  color: $white;
   text-align: center;
   font-size: 16px;
   font-weight: 700;
@@ -250,10 +260,217 @@ a:focus {
   transform: scaleX(0.55);
 }
 
+.orange {
+  position: absolute;
+  width: 100px;
+  background-color: $orange;
+}
+
+.square {
+  position: absolute;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 150%;
+  &::first-letter {
+    color: $orange;
+  }
+  &-three {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 135%;
+    letter-spacing: 1px;
+  }
+}
+
+.main {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    width: 100%;
+    height: 71.5%;
+    background-color: #ccb2a3;
+  }
+  & .container {
+    padding-top: 30px;
+  }
+  &__title {
+    width: 30%;
+    color: $white;
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 110%;
+    text-transform: capitalize;
+    &::first-letter {
+      color: $orange;
+    }
+  }
+  &__found {
+    margin-bottom: 30px;
+    text-align: right;
+    color: $white;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 127.5%;
+  }
+}
+
+.slider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__slide {
+    max-width: 60%;
+    & img {
+      width: 100%;
+    }
+  }
+}
+
+.slider__toggle {
+  position: absolute;
+  bottom: 0;
+  @include flex(5px);
+  &-circle {
+    width: 8px;
+    height: 8px;
+    background-color: #bfbebe;
+    border-radius: 50%;
+    transition: 0.5s;
+    &:hover {
+      transform: scale(1.3);
+    }
+    & .active {
+      width: 12px;
+      height: 12px;
+      background-color: $orange;
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}
+
+.history {
+  max-width: 1300px;
+  margin: 100px auto;
+  & .container:not(.time) {
+    display: flex;
+    justify-content: end;
+  }
+  &__text {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 45px;
+    width: 47.7%;
+    padding: 30px 50px;
+    background-color: $grey;
+    color: $white;
+    line-height: 135%;
+    letter-spacing: 1.8px;
+    &-bold {
+      margin-bottom: 30px;
+      color: $white;
+    }
+  }
+  &__img {
+    width: 60%;
+    max-height: 500px;
+  }
+  &__orange {
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    height: 50px;
+  }
+}
+
+.time {
+  @include flex(30px);
+  justify-content: space-between;
+  font-size: 25px;
+  &-big {
+    color: rgba(52, 52, 52, 0.1);
+    font-size: 144px;
+    font-weight: 600;
+    line-height: 100%;
+  }
+}
+
+.brand {
+  position: relative;
+  margin: 100px auto;
+  & p {
+    margin-bottom: 15px;
+    letter-spacing: 1.8px;
+  }
+}
+
+.info {
+  @include flex(50px);
+  margin-bottom: 200px;
+  &__img {
+    width: 50%;
+  }
+  &__text {
+    width: 45%;
+    padding-left: 100px;
+    color: $white;
+    &-title {
+      margin-bottom: 30px;
+      text-align: right;
+      color: $grey;
+      font-size: 129px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 100%;
+    }
+  }
+}
+
+.why {
+
+}
+
+.square-grey {
+  right: 0;
+  top: 110px;
+  z-index: 0;
+  width: 70%;
+  height: 40%;
+  background-color: $grey;
+}
+
+.square-brown {
+  left: 50px;
+  top: 50px;
+  z-index: -1;
+  width: 50%;
+  height: 100%;
+  border: 5px solid #ccb2a3;
+}
+
+.square-green {
+  right: 0;
+  top: 0;
+  z-index: -1;
+  width: 30%;
+  background-color: #a9c2be;
+}
+
 // Адаптивность
 @media (max-width: 700px) {
   .mobileMenu {
-    position: relative;
+    display: none;
+    position: absolute;
     left: 40px;
     cursor: pointer;
     display: flex;
@@ -262,7 +479,7 @@ a:focus {
     &__burger {
       width: 40px;
       height: 4px;
-      background-color: #ffffff;
+      background-color: $white;
       transition: 0.5s;
       border-radius: 5px;
     }
