@@ -1,13 +1,11 @@
 // Бургерное меню
-// const burger = document.querySelector(".burger"),
-//   contacts = document.querySelector(".header__contacts"),
-//   menu = document.querySelector(".header__menu");
+const burger = document.querySelector(".mobileMenu")
+  menu = document.querySelector(".header__nav");
 
-// burger.addEventListener("click", () => {
-//   contacts.classList.toggle("open");
-//   menu.classList.toggle("open");
-//   burger.classList.toggle("active");
-// });
+burger.addEventListener("click", () => {
+  menu.classList.toggle("open");
+  burger.classList.toggle("active");
+});
 
 // При скролле наверх появляется хедер
 // const headerMini = document.querySelector(".headerMini");
@@ -62,62 +60,6 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// Валидация форм
-// function checkFormField(forma) {
-//   if (forma.querySelector(".email")) {
-//     const emailInput = forma.querySelector(".email");
-//     const validateEmail = () => {
-//       const email = forma.querySelector(".email").value;
-//       const pattern = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
-//       if (email.match(pattern)) emailInput.nextElementSibling.innerHTML = "";
-//       else emailInput.nextElementSibling.innerHTML = "Вы ввели некорректный e-mail";
-//       if (email == "") emailInput.nextElementSibling.innerHTML = "Поле, обязательное для заполнения";
-//     };
-//     emailInput.addEventListener("change", validateEmail);
-//   }
-//   if (forma.querySelector(".tel")) {
-//     const telInput = forma.querySelector(".tel");
-//     const validateTel = () => {
-//       const telInputValue = telInput.value;
-//       if (telInputValue.length < 17) telInput.nextElementSibling.innerHTML = "Вы ввели некорректный номер телефона";
-//       else if (telInputValue.length < 4) telInput.nextElementSibling.innerHTML = "Поле, обязательное для заполнения";
-//       else telInput.nextElementSibling.innerHTML = "";
-//     };
-//     telInput.addEventListener("change", validateTel);
-//   }
-//   if (forma.querySelector("textarea")) {
-//     const area = forma.querySelector("textarea");
-//     const validateTextarea = () => {
-//       if (area.value == 0) area.nextElementSibling.innerHTML = "Поле, обязательное для заполнения";
-//       else if (area.value.length >= 1000) area.nextElementSibling.innerHTML = "Число символов не должно превышать 1000";
-//       else area.nextElementSibling.innerHTML = "";
-//     };
-//     area.addEventListener("change", validateTextarea);
-//   }
-//   const validateText = (input) => {
-//     const patternLetter = /^[a-zA-ZА-Яа-яЁё]{3,20}$/u;
-//     let val = input.value;
-//     if (input.value.length == 0) input.nextElementSibling.innerHTML = "Поле, обязательное для заполнения";
-//     else if (val.match(patternLetter) && val.length >= 3) input.nextElementSibling.innerHTML = "";
-//     else if (val.length >= 20) input.nextElementSibling.innerHTML = "Число символов не должно превышать 20";
-//     else if (val.length < 3) input.nextElementSibling.innerHTML = "Число символов не должно быть меньше 3";
-//     else input.nextElementSibling.innerHTML = "Поле может содержать только буквы";
-//     }
-//   if (forma.querySelector(".name")) {
-//     const name = forma.querySelector(".name");
-//     name.addEventListener("change", () => validateText(name));
-//   }
-// };
-
-// Проверка значений инпутов, форма не отправляется, если одно из них пустое
-function checkFullField(forma) {
-  const inputRequired = forma.querySelectorAll("[required]");
-  for (input of inputRequired) {
-    if (input.value == "")
-      input.nextElementSibling.innerHTML = "Поле, обязательное для заполнения";
-  }
-}
-
 const modal = document.querySelector(".modal"),
   btnModal = document.querySelector("#modal");
 
@@ -127,3 +69,67 @@ modal.addEventListener("click", (e) => {
   e.preventDefault();
   if (e.target == modal) modal.classList.remove("open");
 });
+
+const mainForm = document.querySelector('.forma__form');
+const modalForm = document.querySelector('.modal__content.form');
+checkForm(mainForm);
+checkForm(modalForm);
+
+
+function checkForm(forma) {
+  const errorField = forma.querySelectorAll('.form__error'),
+  btn = forma.querySelector('#validate');
+  forma.addEventListener("click", () => checkFormField(forma));
+  btn.addEventListener('click', (e) => { 
+  e.preventDefault();
+    checkFullField(forma);
+    for (error of errorField) {
+      if(error.textContent == '') return false
+      else btn.textContent = 'Заявка отправлена';
+    } 
+  });
+};
+
+// Валидация форм
+function checkFormField(forma) {
+    const emailInput = forma.querySelector(".email");
+    const validateEmail = () => {
+      const email = forma.querySelector(".email").value;
+      const pattern = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
+      if (email.match(pattern)) emailInput.nextElementSibling.innerHTML = "";
+      else emailInput.nextElementSibling.innerHTML = "Вы ввели некорректный e-mail";
+    };
+    emailInput.addEventListener("change", validateEmail);
+    const telInput = forma.querySelector(".tel");
+    const validateTel = () => {
+      const telInputValue = telInput.value;
+      if (telInputValue.length < 17) telInput.nextElementSibling.innerHTML = "Вы ввели некорректный номер телефона";
+      else if (telInputValue.length < 4) telInput.nextElementSibling.innerHTML = "Поле, обязательное для заполнения";
+      else telInput.nextElementSibling.innerHTML = "";
+    };
+    telInput.addEventListener("change", validateTel);
+    const area = forma.querySelector("textarea");
+    const validateTextarea = () => {
+    if (area.value.length >= 1000) area.nextElementSibling.innerHTML = "Число символов не должно превышать 1000";
+      else area.nextElementSibling.innerHTML = "";
+    };
+    area.addEventListener("change", validateTextarea);
+    const name = forma.querySelector(".name");
+    const validateText = (input) => {
+    const patternLetter = /^[a-zA-ZА-Яа-яЁё]{3,20}$/u;
+    if (name.value.length == 0) name.nextElementSibling.innerHTML = "Поле, обязательное для заполнения";
+    else if (name.value.match(patternLetter) && name.value.length >= 3) name.nextElementSibling.innerHTML = "";
+    else if (name.value.length >= 20) name.nextElementSibling.innerHTML = "Число символов не должно превышать 20";
+    else if (name.value.length < 3) name.nextElementSibling.innerHTML = "Число символов не должно быть меньше 3";
+    else name.nextElementSibling.innerHTML = "Поле может содержать только буквы";
+    }
+    name.addEventListener("change", () => validateText(name));
+};
+
+// Проверка значений инпутов, форма не отправляется, если одно из них пустое
+function checkFullField(forma) {
+  const inputRequired = forma.querySelectorAll("[required]");
+  for (input of inputRequired) {
+    if (input.value == "") input.nextElementSibling.innerHTML = "Поле, обязательное для заполнения";
+  }
+}
