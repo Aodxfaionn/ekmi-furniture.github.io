@@ -683,7 +683,9 @@ a:hover::before {
   height: 40px;
   padding: 5px;
   background-color: transparent;
+  outline: 0;
   border: 0;
+  border-radius: 0;
   border-bottom: 1px solid $grey;
   font-size: 14px;
   &:focus {
@@ -918,12 +920,15 @@ div.checkbox {
     top: 80px;
     height: 80%;
   }
-  .square-green,
-  .partners__orange-two {
+  .square-green {
     display: none;
   }
   .square-grey {
     height: 26%;
+  }
+  .partners__orange-two {
+    bottom: 0;
+    right: 0;
   }
   .brand::after,
   .grid {
