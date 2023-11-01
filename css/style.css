@@ -1185,6 +1185,9 @@ div.checkbox {
   .partners::after {
     content: none;
   }
+  .partners::after, .partners::before {
+    height: 69%;
+  }
   .individ,
   .partners__text {
     color: #343434;
