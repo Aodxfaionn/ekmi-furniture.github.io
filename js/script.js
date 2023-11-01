@@ -63,7 +63,7 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 const modal = document.querySelector(".modal"),
-  btnModal = document.querySelector("#modal");
+  btnModal = document.querySelector(".js-modal");
 
 btnModal.addEventListener("click", (e) => modal.classList.add("open"));
 
@@ -79,7 +79,7 @@ checkForm(modalForm);
 
 function checkForm(forma) {
   const errorField = forma.querySelectorAll(".form__error"),
-    btn = forma.querySelector("#validate");
+    btn = forma.querySelector(".js-btn-validate");
   forma.addEventListener("click", () => checkFormField(forma));
   btn.addEventListener("click", (e) => {
     e.preventDefault();
